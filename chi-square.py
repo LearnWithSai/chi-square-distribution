@@ -14,9 +14,9 @@ with st.sidebar:
     st.header('Input Parameters')
     degrees_freedom = st.number_input('Degrees Of Freedom', value=1)
 
-x = (np.random.standard_normal(size=50))**2
+x = (np.random.standard_normal(size=25))**2
 for i in range(0,degrees_freedom-1):
-    x = x + (np.random.standard_normal(size=50))**2 
+    x = x + (np.random.standard_normal(size=25))**2 
     
 
 

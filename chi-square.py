@@ -16,7 +16,7 @@ with st.sidebar:
 
 x = np.array([])
 for i in range(0,degrees_freedom):
-    x += (np.random.normal(loc=0, scale=1, size=100))**2  
+    x = x + (np.random.normal(loc=0, scale=1, size=100))**2  
     
 
 

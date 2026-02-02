@@ -2,6 +2,7 @@ import streamlit as st
 import numpy as np
 from scipy.stats import norm
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 st.set_page_config(page_title='Confidence Interval Calculator', layout='wide')
 
@@ -13,33 +14,23 @@ This app calculates the confidence interval for a population mean using a Z-proc
 
 with st.sidebar:
     st.header('Input Parameters')
-    confidence_level = st.slider('Confidence Level (%)', 0, 100, 95, 1)
-    sample_mean = st.number_input('Sample Mean', value=0.0)
-    population_std_dev = st.number_input('Population Standard Deviation', value=1.0)
-    sample_size = st.number_input('Sample Size', value=30, min_value=1, step=1)
+    degrees_freedom = st.number_input('Degrees Of Freedom', value=1.0)
 
-# Calculate the critical value (z-score) and margin of error
-z_score = norm.ppf(1 - (1 - confidence_level / 100) / 2)
-margin_of_error = z_score * (population_std_dev / np.sqrt(sample_size))
+x = np.array([])
+for i in range(0,degrees_freedom):
+    x += (np.random.normal(loc=0, scale=1, size=100))**2  
+    
 
-# Calculate the confidence interval
-lower_limit = sample_mean - margin_of_error
-upper_limit = sample_mean + margin_of_error
 
 # Display results
 st.write(f'Critical Value (z-score): {z_score:.2f}')
-st.write(f'Margin of Error: {margin_of_error:.2f}')
-st.write(f'Confidence Interval: ({lower_limit:.2f}, {upper_limit:.2f})')
 
 # Plot the confidence interval
 fig, ax = plt.subplots(figsize=(3, 2))
 
-ax.bar(['Lower Limit', 'Upper Limit'], [lower_limit, upper_limit], color='lightblue')
-ax.plot(['Lower Limit', 'Upper Limit'], [lower_limit, upper_limit], color='red', linewidth=2)
-ax.axhline(sample_mean, color='green', linestyle='--', label='Sample Mean')
+sns.kdeplot(x, clip=(x.min(),x.max()), ax=ax)
 
-ax.set_ylabel('Value')
-ax.set_title('Confidence Interval')
+ax.set_title('Chi-Square Distribution Visualization')
 ax.legend()
 
 st.pyplot(fig)

@@ -12,7 +12,7 @@ st.title('Chi-Square Distribution Visualization')
 degrees_freedom = 1
 with st.sidebar:
     st.header('Input Parameters')
-    degrees_freedom = st.number_input('Degrees Of Freedom', value=1.0)
+    degrees_freedom = st.number_input('Degrees Of Freedom', value=1)
 
 x = np.array([])
 for i in range(0,degrees_freedom):

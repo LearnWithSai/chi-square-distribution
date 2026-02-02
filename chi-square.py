@@ -16,7 +16,7 @@ with st.sidebar:
 
 x = (np.random.standard_normal(size=100))**2
 for i in range(0,degrees_freedom-1):
-    x = x + (np.random.standard_normal(size=100))**2  
+    x = x + x 
     
 
 

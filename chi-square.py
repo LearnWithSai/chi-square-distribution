@@ -14,8 +14,8 @@ with st.sidebar:
     st.header('Input Parameters')
     degrees_freedom = st.number_input('Degrees Of Freedom', value=1)
 
-x = np.array([])
-for i in range(0,degrees_freedom):
+x = (np.random.normal(loc=0, scale=1, size=100))**2
+for i in range(0,degrees_freedom-1):
     x = x + (np.random.normal(loc=0, scale=1, size=100))**2  
     
 

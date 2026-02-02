@@ -20,8 +20,6 @@ for i in range(0,degrees_freedom-1):
     
 
 
-# Display results
-st.write(f'Critical Value (z-score): {z_score:.2f}')
 
 fig, ax = plt.subplots(figsize=(3, 2))
 
